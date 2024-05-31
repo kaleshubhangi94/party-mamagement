@@ -1,0 +1,39 @@
+<!-- Party Management Form -->
+<form [formGroup]="partyForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" type="text" required />
+  </div>
+  <div>
+    <label for="location">Location</label>
+    <input id="location" formControlName="location" type="text" required />
+  </div>
+  <div>
+    <label for="date">Date</label>
+    <input id="date" formControlName="date" type="date" required />
+  </div>
+  <button type="submit">{{ isEdit ? 'Update' : 'Add' }} Party</button>
+</form>
+
+<!-- Party List Table -->
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let party of parties">
+      <td>{{ party.name }} </td>
+      <td>{{ party.location }}</td>
+      <td>{{ party.date | date }}</td>
+      <td>
+        <button (click)="editParty(party)">Edit</button>
+        <button (click)="deleteParty(party.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
